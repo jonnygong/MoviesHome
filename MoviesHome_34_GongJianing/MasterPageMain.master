@@ -1,0 +1,238 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageMain.master.cs"
+    Inherits="MasterPageMain" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8">
+    <title>视频之家MoviesHome</title>
+    <link rel="shortcut icon" href="images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- css -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/skin-orange.css" media="screen" />
+</head>
+<body class="boxed">
+    <div class="body">
+        <header>
+	<div class="container clearfix">
+		<div class="row-fluid">
+			<div class="span12">				
+				<a href="index.aspx"><p class="logo">MoviesHome</p></a>
+				<div class="topinfo">
+					<ul class="social-icons list-soc">
+						<li><a href="#"><i class="icon-facebook"></i></a></li>
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-linkedin"></i></a></li>
+						<li><a href="#"><i class="icon-google-plus"></i></a></li>
+						<li><a href="#"><i class="icon-pinterest"></i></a></li>
+					</ul>
+					<div class="infophone">
+						<i class="icon-phone"></i> Tel: +8 737 924 6035
+					</div>
+					<div class="infoaddress">
+						 3953 Berkley Street, Fort Washington, 19034
+					</div>
+				</div>
+				<div class="clearfix">
+				</div>
+				<div class="row-nav navbar">
+					<div class="navbar-inner">
+						<ul id="nav" class="nav">
+							<li class="active selected"><a href="index.aspx">首页</a></li>
+                            <li class="divider-vertical"></li>
+							<li class="dropdown"><a href="sort.aspx" class="dropdown-toggle">全部电影 <b class="caret"></b></a>
+							<ul class="dropdown-menu js-activated" style="display: none;">
+								<!--<li><a href="sort.html">喜剧</a></li>
+								<li><a href="sort.html">爱情</a></li>                              
+                                <li><a href="sort.html">科幻</a></li>                               
+                                <li><a href="sort.html">伦理</a></li>                               
+                                <li><a href="sort.html">惊悚</a></li>                               
+                                <li><a href="sort.html">动作</a></li>-->
+                                <%=types %>								
+							</ul>
+							</li>
+							<li class="divider-vertical"></li>
+							<li><a href="list.aspx">预告片</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="list.aspx">微电影</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="list.aspx">VIP专区</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="list.aspx">限时免费</a></li>
+							<li class="divider-vertical"></li>
+						</ul>
+						<form id="search" action="#" method="GET">							
+								<input type="text" placeholder="Enter search keywords here..." name="s">
+								<a href="#"></a>							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</header>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer footerdark">
+            <div class="text-center wraptotop">
+                <a class="totop"><i class="icon-chevron-up"></i></a>
+            </div>
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h1 style="font-size: 16px; font-weight: bold">
+                            <i class="icon-heart"></i>关于我们</h1>
+                        <hr>
+                        <p class="zmlogo">
+                            MoviesHome</p>
+                    </div>
+                    <div class="span4">
+                        <h1 style="font-size: 16px; font-weight: bold">
+                            播放记录</h1>
+                        <hr>
+                        <div>
+                            盗墓笔记[电脑]观看至42分钟</div>
+                        <div>
+                            克拉恋人[电脑]观看至16分钟</div>
+                    </div>
+                    <div class="span4">
+                        <h1 style="font-size: 16px; font-weight: bold">
+                            意见反馈</h1>
+                        <hr>
+                        <div class="done">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    ×</button>
+                                Your message has been sent. Thank you!
+                            </div>
+                        </div>
+                        <form method="post" action="contact.php" id="contactform">
+                            <div class="form">
+                                <div class="controls controls-row">
+                                    <input class="span6" type="text" name="phone" placeholder="手机号码">
+                                    <input class="span6" type="text" name="email" placeholder="电子邮箱">
+                                </div>
+                                <div class="controls">
+                                    <textarea class="span12" name="comment" rows="4" placeholder="意见建议"></textarea>
+                                </div>
+                                <input type="submit" id="submit" class="btn" value="提交反馈">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 2nd row -->
+        <div class="footerbottom footerbottomdark">
+            <div class="container">
+                <div class="row-fluid">
+                    <!-- left -->
+                    <div class="span4 smallspacetop">
+                        <p class="smaller">
+                            <span class="copyright">© </span>Copyright &nbsp;2015 &nbsp;视频之家 &nbsp;jj.948500953</a>.Timu</p>
+                    </div>
+                    <!-- right -->
+                    <div class="span8 smallspacetop">
+                        <div class="pull-right smaller">
+                            <ul class="footermenu">
+                                <!--<li><a href="sort.html">喜剧</a></li>
+                                <li><a href="sort.html">爱情</a></li>
+                                <li><a href="sort.html">科幻</a></li>
+                                <li><a href="sort.html">伦理</a></li>
+                                <li><a href="sort.html">惊悚</a></li>
+                                <li><a href="sort.html">动作</a></li>-->
+                                <%=types %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+
+    <script src="js/bootstrap.js"></script>
+
+    <script src="js/plugins.js"></script>
+
+    <script src="js/custom.js"></script>
+
+    <script>
+	jQuery(function(){
+		jQuery('#camera_wrap_4').camera({
+			height: 'auto',
+			loader: 'bar',
+			pagination: false,
+			thumbnails: false,
+			hover: true,
+			opacityOnGrid: false,
+			fx: 'random',
+			transPeriod: 1500,
+			time: 7000,
+			overlayer: true,
+			imagePath: 'img/'
+		});
+	});
+    </script>
+
+    <script type="text/javascript">
+$(window).load(function(){			
+			$('#recent-projects').carouFredSel({
+				responsive: true,
+				width: '100%',
+				auto: true,
+				circular	: true,
+				infinite	: false,
+				prev : {
+					button		: "#car_prev",
+					key			: "left",
+						},
+				next : {
+					button		: "#car_next",
+					key			: "right",
+							},
+				swipe: {
+					onMouse: true,
+					onTouch: true
+					},
+				scroll : 1500,
+				items: {
+					visible: {
+						min: 1,
+						max: 1
+					}
+				}
+			});
+		});	
+    </script>
+
+    <script type="text/javascript">
+	$(".accordion h3").eq(0).addClass("active");
+	$(".accordion .accord_cont").eq(0).show();
+	$(".accordion h3").click(function(){
+		$(this).next(".accord_cont").slideToggle("slow")
+		.siblings(".accord_cont:visible").slideUp("slow");
+		$(this).toggleClass("active");
+		$(this).siblings("h3").removeClass("active");
+	});	
+    </script>
+
+    <script type="text/javascript">
+$(document).ready(function(){
+    $("img.imgOpa").hover(function() {
+      $(this).stop().animate({opacity: "0.6"}, 'slow');
+    },
+    function() {
+      $(this).stop().animate({opacity: "1.0"}, 'slow');
+    });
+  });
+    </script>
+
+</body>
+</html>

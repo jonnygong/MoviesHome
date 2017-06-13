@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>视频信息</title>
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+		<link rel="stylesheet" href="css/table.css" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+
+			<blockquote class="layui-elem-quote">
+				<!--<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
+					<i class="layui-icon">&#xe608;</i> 添加信息
+				</a>
+				<a href="#" class="layui-btn layui-btn-small" id="import">
+					<i class="layui-icon">&#xe608;</i> 导入信息
+				</a>
+				<a href="#" class="layui-btn layui-btn-small">
+					<i class="fa fa-shopping-cart" aria-hidden="true"></i> 导出信息
+				</a>-->
+                <!--<select id="SelectType">
+                    <option selected="selected"></option>
+                </select>-->
+                <!--<select id="SelectMovie">
+                    <option selected="selected"></option>
+                </select>-->
+				<input style="width:130px;height:26px;" id="id_search2"></input>
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+					<i class="layui-icon">&#xe615;</i> 搜索
+				</a>
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="addmovietypes">
+					<i class="layui-icon">&#xe608;</i> 添加类别
+				</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>视频信息</legend>
+				<div class="layui-field-box">
+					<table class="site-table table-hover" id="table_example2">
+						<thead>
+							<tr>
+								<th><input type="checkbox" id="selected-all"></th>
+								<th>分类名称</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="movieInfo">
+							<!--<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>-->
+							
+						</tbody>
+					</table>
+
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="page" class="page">
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.quicksearch.js"></script>
+
+
+		<script>
+			layui.config({
+				base: 'plugins/layui/modules/'
+			});
+
+			layui.use(['icheck', 'laypage','layer'], function() {
+				var $ = layui.jquery,
+					laypage = layui.laypage,
+					layer = parent.layer === undefined ? layui.layer : parent.layer;
+				$('input').iCheck({
+					checkboxClass: 'icheckbox_flat-green'
+				});
+
+				//page
+				laypage({
+					cont: 'page',
+					pages: 25 //总页数
+						,
+					groups: 5 //连续显示分页数
+						,
+					jump: function(obj, first) {
+						//得到了当前页，用于向服务端请求对应数据
+						var curr = obj.curr;
+						if(!first) {
+							//layer.msg('第 '+ obj.curr +' 页');
+						}
+					}
+				});
+
+				$('#search').on('click', function() {
+					parent.layer.alert('你点击了搜索按钮')
+				});
+				
+				$('#addmovietypes').on('click', function() {
+					layer.open({
+                      title: '添加分类',
+                      content: '<div class="layui-form-item">'+
+            '    <label class="layui-form-label" style=\"margin-left:-30px;\">'+
+            '        分类名称:</label>'+
+           '     <div class="layui-input-block">'+
+           '         <input type="text" name="title" autocomplete="off" placeholder="请输入分类名称" class="layui-input"'+
+           '             id="movietypes_name">'+
+          '      </div>'+
+         '   </div>',
+                      btn:['添加','关闭'],
+                      btn1: function(index, layero){
+                         //按钮的回调
+
+                        // 1 先获取文本框的数据
+	                            var movietypes_name=$('#movietypes_name').val();
+                    	        
+                    	        
+	                            // 2 组装好送往后台的json数据
+                                var _json = jQuery.param({ "movietypes_name": movietypes_name });  
+                                
+                                // 3 指定送向后台哪个处理程序以及传送的方式，并传送
+                                $.ajax({  
+                                    url: "../admin/api/addMovieTypes.ashx",  
+                                    type: "POST",  
+                                    async: false,  
+                                    data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+                                    dataType: "json",  
+                                    // contentType: "charset=utf-8",  
+                                    cache: false,  
+                                    
+                                 //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+                                    success: function (data) {  
+                                        var json=data;
+                                        
+                                        //返回过来的是1 表示插入成功了
+                                         if(json.r=="1")
+                                         {
+                                            //提示插入成功
+                                             alert("添加成功！");
+                                         }
+                                         //否则则是插入失败了
+                                         else
+                                         {
+                                             //alert("提交失败！");
+                                         }
+                                    },  
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }  
+                                });
+
+					                    //return false;
+
+                      }
+                    });
+				});
+
+				$('#add').on('click', function() {
+					$.get('temp/edit-form.html', null, function(form) {
+						layer.open({
+							type: 1,
+							title: '添加表单',
+							content: form,
+							btn: ['保存', '取消'],
+							area: ['600px', '400px'],
+							maxmin: true,
+							yes: function(index) {
+								console.log(index);
+							},
+							full: function(elem) {
+								var win = window.top === window.self ? window : parent.window;
+								$(win).on('resize', function() {
+									var $this = $(this);
+									elem.width($this.width()).height($this.height()).css({
+										top: 0,
+										left: 0
+									});
+									elem.children('div.layui-layer-content').height($this.height() - 95);
+								});
+							}
+						});
+					});
+				});
+
+				$('#import').on('click', function() {
+					var that = this;
+					var index = layer.tips('只想提示地精准些', that,{tips: [1, 'white']});
+					$('#layui-layer'+index).children('div.layui-layer-content').css('color','#000000');
+				});
+
+				$('.site-table tbody tr').on('click', function(event) {
+					var $this = $(this);
+					var $input = $this.children('td').eq(0).find('input');
+					$input.on('ifChecked', function(e) {
+						$this.css('background-color', '#EEEEEE');
+					});
+					$input.on('ifUnchecked', function(e) {
+						$this.removeAttr('style');
+					});
+					$input.iCheck('toggle');
+				}).find('input').each(function() {
+					var $this = $(this);
+					$this.on('ifChecked', function(e) {
+						$this.parents('tr').css('background-color', '#EEEEEE');
+					});
+					$this.on('ifUnchecked', function(e) {
+						$this.parents('tr').removeAttr('style');
+					});
+				});
+				$('#selected-all').on('ifChanged', function(event) {
+					var $input = $('.site-table tbody tr td').find('input');
+					$input.iCheck(event.currentTarget.checked ? 'check' : 'uncheck');
+				});
+			});
+			
+			
+			
+			
+			//ajax
+
+    
+    function loadMovieTypes() {
+//        var _json = jQuery.param();
+        var request = $.ajax({
+            url: "../admin/api/laodMovieTypes.ashx",
+            type: "POST",
+            async: false,
+            //data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+            dataType: "json",
+            // contentType: "charset=utf-8",  
+            cache: false,
+
+            //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+            success: function (data) {
+                var json = data;
+
+                //返回过来的是1 表示插入成功了
+                if (json.r == "0") {
+                    //提示插入成功
+                    
+                }
+                    //否则则是插入失败了
+                else {
+                    displayMovieTypes(json.data);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }
+        });
+    }
+    
+    function displayMovieTypes(data) {
+        //先加表头
+        var mystr = "";
+                       
+
+        //中间读数据
+        $.each(data, function (index, item) {
+            //循环获取数据  
+            
+            mystr += "<tr>"+
+					"			<td><input type=\"checkbox\"></td>"+
+					"			<td>"+ item.tname +"</td>"+
+					"			<td>"+
+					"				<a href=\"javascript:;\" data-id=\"1\" data-opt=\"del\" class=\"layui-btn layui-btn-danger layui-btn-mini\" onclick=\"deleteTypes("+item.id+")\">删除</a>"+
+
+"								</td>"+
+"							</tr>";
+
+        });
+
+        //最后加表尾
+       
+
+        //显示在页面上
+        $("#movieInfo").html(mystr);
+
+    }
+    
+    function deleteTypes(id) {
+
+        // 1 先获取文本框的数据
+
+
+
+        // 2 组装好送往后台的json数据
+        var _json = jQuery.param({ "id": id });
+
+        // 3 指定送向后台哪个处理程序以及传送的方式，并传送
+        var request = $.ajax({
+            url: "../admin/api/deleteMovieTypes.ashx",
+            type: "POST",
+            async: false,
+            data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+            dataType: "json",
+            // contentType: "charset=utf-8",  
+            cache: false,
+
+            //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+            success: function (data) {
+                var json = data;
+
+                //返回过来的是1 表示插入成功了
+                if (json.r == "1") {
+                    //window.navigate("./tea-course-content.aspx");
+                }
+                    //否则则是插入失败了
+                else {
+                    
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }
+        });
+        location.reload(true);
+    }
+
+
+    loadMovieTypes();
+    
+    
+    
+
+
+//实时模糊搜索
+$('input#id_search2').quicksearch('table#table_example2 tbody tr');
+
+
+        </script>
+	</body>
+
+</html>

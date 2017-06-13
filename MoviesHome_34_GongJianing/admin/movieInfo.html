@@ -1,0 +1,687 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>视频信息</title>
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+		<link rel="stylesheet" href="css/table.css" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+
+			<blockquote class="layui-elem-quote">
+				<!--<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
+					<i class="layui-icon">&#xe608;</i> 添加信息
+				</a>
+				<a href="#" class="layui-btn layui-btn-small" id="import">
+					<i class="layui-icon">&#xe608;</i> 导入信息
+				</a>
+				<a href="#" class="layui-btn layui-btn-small">
+					<i class="fa fa-shopping-cart" aria-hidden="true"></i> 导出信息
+				</a>-->
+                <select id="SelectType">
+                    <option selected="selected"></option>
+                </select>
+                <!--<select id="SelectMovie">
+                    <option selected="selected"></option>
+                </select>-->
+				<input style="width:130px;height:26px;" id="id_search2"></input>
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+					<i class="layui-icon">&#xe615;</i> 搜索
+				</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>视频信息</legend>
+				<div class="layui-field-box">
+					<table class="site-table table-hover" id="table_example2">
+						<thead>
+							<tr>
+								<th><input type="checkbox" id="selected-all"></th>
+								<th>所属分类</th>
+								<th>视频名称</th>
+								<th>上映时间</th>
+								<th>海报链接</th>
+								<th>制片人</th>
+								<th>播放次数</th>
+<!--								<th>置顶</th>-->
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="movieInfo">
+							<!--<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>喜剧</td>
+								<td>
+									<a href="/manage/article_edit_1">人在囧途</a>
+								</td>
+
+								<td>2016-11-16</td>
+								<td><img src="images/logo-1.png" /></td>
+								<td>8.8</td>
+								<td>6666</td>
+
+
+								<td style="text-align:center;"><i class="layui-icon" style="color:green;"></i></td>
+								<td>
+									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+									<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini layui-btn-warm">置顶</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+
+								</td>
+							</tr>-->
+						</tbody>
+					</table>
+
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="page" class="page">
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.quicksearch.js"></script>
+
+
+		<script>
+			layui.config({
+				base: 'plugins/layui/modules/'
+			});
+
+			layui.use(['icheck', 'laypage','layer'], function() {
+				var $ = layui.jquery,
+					laypage = layui.laypage,
+					layer = parent.layer === undefined ? layui.layer : parent.layer;
+				$('input').iCheck({
+					checkboxClass: 'icheckbox_flat-green'
+				});
+
+				//page
+				laypage({
+					cont: 'page',
+					pages: 25 //总页数
+						,
+					groups: 5 //连续显示分页数
+						,
+					jump: function(obj, first) {
+						//得到了当前页，用于向服务端请求对应数据
+						var curr = obj.curr;
+						if(!first) {
+							//layer.msg('第 '+ obj.curr +' 页');
+						}
+					}
+				});
+
+				$('#search').on('click', function() {
+					parent.layer.alert('你点击了搜索按钮')
+				});
+				
+//				$('#write').on('click', function() {
+//					layer.open({
+//                      title: '编辑视频信息',
+//                      content: '<div class="layui-form-item">'+
+//           '     <label class="layui-form-label">'+
+//           '         视频名称</label>'+
+//         '       <div class="layui-input-block">'+
+//           '         <input type="text" name="title" autocomplete="off" placeholder="请输入视频标题" class="layui-input" id="movie_name">'+
+//         '       </div>'+
+//        '    </div>'+
+//      '  <div class="layui-form-item">'+
+//        '        <label class="layui-form-label">图片链接</label>'+
+//      '          <div class="layui-input-block">'+
+//        '            <asp:FileUpload ID="FileUpload1" runat="server" />&nbsp;'+
+//        '            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="上传" />'+
+//        '            <asp:Label ID="Label1" runat="server"></asp:Label>'+
+//       '             <asp:Label ID="Label3" runat="server"></asp:Label>'+
+//      '              <asp:Image ID="Image1" runat="server" Width="80" Height="120" /></div>'+
+//        '    </div>'+
+//       ' <div class="layui-form-item" style="margin-top: 13px;">'+
+//        '        <label class="layui-form-label">'+
+//         '           选择分类</label>'+
+//          '      <div class="layui-input-block">'+
+//           '         &nbsp;<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="tname" DataValueField="id">'+
+//            '        </asp:DropDownList><asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:moviesConnectionString %>"'+
+//             '           SelectCommand="SELECT [tname], [id] FROM [types]"></asp:SqlDataSource>'+
+//              '      &nbsp;'+
+//'                </div>'+
+// '           </div>'+
+//  '          <div class="layui-form-item">'+
+//   '             <label class="layui-form-label">'+
+//    '                发布日期</label>'+
+//     '           <div class="layui-input-block">'+
+//      '              <input type="text" name="date" id="date" placeholder="2018-01-01" autocomplete="off"'+
+//       '                 class="layui-input" onclick="layui.laydate({elem: this})">'+
+//        '        </div>'+
+//         '   </div>'+
+//          '  <div class="layui-form-item">'+
+//'                <label class="layui-form-label">'+
+// '                   影片导演</label>'+
+//  '              <div class="layui-input-block">'+
+//   '                 <input type="text" name="" autocomplete="off" class="layui-input" id="movie_people">'+
+//    '            </div>'+
+//     '       </div>'+
+//      '      <div class="layui-form-item">'+
+//       '         <div class="layui-input-block">'+
+//        '            <button class="layui-btn" lay-submit lay-filter="addMovie">'+
+//         '               立即提交</button>'+
+//          '          <button type="reset" class="layui-btn layui-btn-primary">重置</button>'+
+//           '     </div>'+
+//           ' </div>'
+//                    }); 
+//				});
+
+				$('#add').on('click', function() {
+					$.get('temp/edit-form.html', null, function(form) {
+						layer.open({
+							type: 1,
+							title: '添加表单',
+							content: form,
+							btn: ['保存', '取消'],
+							area: ['600px', '400px'],
+							maxmin: true,
+							yes: function(index) {
+								console.log(index);
+							},
+							full: function(elem) {
+								var win = window.top === window.self ? window : parent.window;
+								$(win).on('resize', function() {
+									var $this = $(this);
+									elem.width($this.width()).height($this.height()).css({
+										top: 0,
+										left: 0
+									});
+									elem.children('div.layui-layer-content').height($this.height() - 95);
+								});
+							}
+						});
+					});
+				});
+
+				$('#import').on('click', function() {
+					var that = this;
+					var index = layer.tips('只想提示地精准些', that,{tips: [1, 'white']});
+					$('#layui-layer'+index).children('div.layui-layer-content').css('color','#000000');
+				});
+
+				$('.site-table tbody tr').on('click', function(event) {
+					var $this = $(this);
+					var $input = $this.children('td').eq(0).find('input');
+					$input.on('ifChecked', function(e) {
+						$this.css('background-color', '#EEEEEE');
+					});
+					$input.on('ifUnchecked', function(e) {
+						$this.removeAttr('style');
+					});
+					$input.iCheck('toggle');
+				}).find('input').each(function() {
+					var $this = $(this);
+					$this.on('ifChecked', function(e) {
+						$this.parents('tr').css('background-color', '#EEEEEE');
+					});
+					$this.on('ifUnchecked', function(e) {
+						$this.parents('tr').removeAttr('style');
+					});
+				});
+				$('#selected-all').on('ifChanged', function(event) {
+					var $input = $('.site-table tbody tr td').find('input');
+					$input.iCheck(event.currentTarget.checked ? 'check' : 'uncheck');
+				});
+			});
+			
+			
+			
+			
+			//ajax
+			function loadMovieInfo() {
+//        var _json = jQuery.param();
+        var request = $.ajax({
+            url: "../admin/api/loadMovieInfo.ashx",
+            type: "POST",
+            async: false,
+            //data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+            dataType: "json",
+            // contentType: "charset=utf-8",  
+            cache: false,
+
+            //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+            success: function (data) {
+                var json = data;
+
+                //返回过来的是1 表示插入成功了
+                if (json.r == "0") {
+                    //提示插入成功
+                    
+                }
+                    //否则则是插入失败了
+                else {
+
+                    
+                    displayMovieInfo(json.data);
+//                    displayMovieSearch(json.data);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }
+        });
+    }
+
+    function displayMovieInfo(data) {
+        //先加表头
+        var mystr = "";
+                       
+
+        //中间读数据
+        $.each(data, function (index, item) {
+            //循环获取数据  
+            
+            mystr += "<tr>"+
+				"				<td><input type=\"checkbox\"></td>"+
+				"				<td id=\"t1\">"+ item.tname +"</td>"+
+				"				<td id=\"t2\">"+ item.mname +"</td>"+
+
+				"				<td id=\"t3\">"+ item.onlinetime +"</td>"+
+				"				<td><img src=\""+ item.img +"\" width=\"40\" height=\"60\"/></td>"+
+				"				<td id=\"t4\">"+ item.maker +"</td>"+
+				"				<td id=\"t5\">"+ item.playtimes +"</td>"+
+
+
+//				"				<td style=\"text-align:center;\"><i class=\"layui-icon\" style=\"color:green;\"></i></td>"+
+				"				<td>"+
+//				"					<a href=\"/detail-1\" target=\"_blank\" class=\"layui-btn layui-btn-normal layui-btn-mini\">预览</a>"+
+				"					<a href=\"changeMovie.aspx?id="+item.id+"\" class=\"layui-btn layui-btn-mini\" id=\"write\">编辑</a>"+
+//				"					<a href=\"/manage/article_edit_1\" class=\"layui-btn layui-btn-mini layui-btn-warm\">置顶</a>"+
+				"					<a href=\"javascript:;\" data-id=\"1\" data-opt=\"del\" class=\"layui-btn layui-btn-danger layui-btn-mini\" onclick=\"deleteVideo("+ item.id +");\">删除</a>"+
+
+				"				</td>"+
+				"			</tr>";
+
+        });
+
+        //最后加表尾
+       
+
+        //显示在页面上
+        $("#movieInfo").html(mystr);
+
+    }
+    
+    function loadMovieTypes() {
+//        var _json = jQuery.param();
+        var request = $.ajax({
+            url: "../admin/api/laodMovieTypes.ashx",
+            type: "POST",
+            async: false,
+            //data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+            dataType: "json",
+            // contentType: "charset=utf-8",  
+            cache: false,
+
+            //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+            success: function (data) {
+                var json = data;
+
+                //返回过来的是1 表示插入成功了
+                if (json.r == "0") {
+                    //提示插入成功
+                    
+                }
+                    //否则则是插入失败了
+                else {
+                    displayMovieTypes(json.data);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }
+        });
+    }
+    
+    function displayMovieTypes(data) {
+        //先加表头
+       var mystr = "";
+                       
+
+        //中间读数据
+        $.each(data, function (index, item) {
+            //循环获取数据  
+            
+            mystr+="<option>"+ item.tname +"</option>";
+//            $("#SelectMovie").html("<option>"+ item.mname +"</option>");
+
+        });
+
+        //最后加表尾
+       
+
+        //显示在页面上
+        $("#SelectType").html(mystr);
+
+    }
+    
+    function deleteVideo(id) {
+
+        // 1 先获取文本框的数据
+
+
+
+        // 2 组装好送往后台的json数据
+        var _json = jQuery.param({ "id": id });
+
+        // 3 指定送向后台哪个处理程序以及传送的方式，并传送
+        var request = $.ajax({
+            url: "../admin/api/deleteMovieInfo.ashx",
+            type: "POST",
+            async: false,
+            data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+            dataType: "json",
+            // contentType: "charset=utf-8",  
+            cache: false,
+
+            //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+            success: function (data) {
+                var json = data;
+
+                //返回过来的是1 表示插入成功了
+                if (json.r == "1") {
+                    //window.navigate("./tea-course-content.aspx");
+                }
+                    //否则则是插入失败了
+                else {
+                    
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }
+        });
+        location.reload(true);
+    }
+    
+    
+    
+//    function updateLessonDetail() {
+
+//        // 1 先获取文本框的数据
+//        
+//        
+
+//        // 2 组装好送往后台的json数据
+//        var _json = jQuery.param({ "id": id });
+
+//        // 3 指定送向后台哪个处理程序以及传送的方式，并传送
+//        var request = $.ajax({
+//            url: "../admin/api/changeMovieInfo.ashx",
+//            type: "POST",
+//            async: false,
+//            data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+//            dataType: "json",
+//            // contentType: "charset=utf-8",  
+//            cache: false,
+
+//            //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+//            success: function (data) {
+//                var json = data;
+
+//                //返回过来的是1 表示插入成功了
+//                if (json.r == "1") {
+//                    //提示插入成功
+//                    //alert("success!!");
+//                    
+//                }
+//                    //否则则是插入失败了
+//                else {
+//                    //alert("fall!!");
+//                }
+//            },
+//            error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }
+//        });
+//        location.reload(true);
+//        //            loadLessonVideo();
+//    }
+    
+    loadMovieInfo();
+    loadMovieTypes();
+    
+
+
+//实时模糊搜索
+$('input#id_search2').quicksearch('table#table_example2 tbody tr');
+
+//点击修改变input框
+//document.getElementById("click").onclick=function(){
+//    var text1=document.getElementById("t1");
+//    var text2=document.getElementById("t2");
+//    var text3=document.getElementById("t3");
+//    var text4=document.getElementById("t4");
+//    var text5=document.getElementById("t5");
+//    var val1=text1.innerHTML;
+//    var val2=text2.innerHTML;
+//    var val3=text3.innerHTML;
+//    var val4=text4.innerHTML;
+//    var val5=text5.innerHTML;
+//    text1.innerHTML="<input type='text' style=\"width:35px;\" id='n1' value="+val1+" />";
+//    text2.innerHTML="<input type='text' style=\"width:65px;\" id='n2' value="+val2+" />";
+//    text3.innerHTML="<input type='text' style=\"width:75px;\" id='n3' value="+val3+" />";
+//    text4.innerHTML="<input type='text' style=\"width:35px;\" id='n4' value="+val4+" />";
+//    text5.innerHTML="<input type='text' style=\"width:35px;\" id='n5' value="+val5+" />";
+//    document.getElementById("n1").addEventListener("blur",function(e){
+//        text1.innerHTML=document.getElementById("n1").value;
+//    });
+//    document.getElementById("n2").addEventListener("blur",function(e){
+//        text2.innerHTML=document.getElementById("n2").value;
+//    });
+//    document.getElementById("n3").addEventListener("blur",function(e){
+//        text3.innerHTML=document.getElementById("n3").value;
+//    });
+//    document.getElementById("n4").addEventListener("blur",function(e){
+//        text4.innerHTML=document.getElementById("n4").value;
+//    });
+//    document.getElementById("n5").addEventListener("blur",function(e){
+//        text5.innerHTML=document.getElementById("n5").value;
+//    });
+//};
+        </script>
+	</body>
+
+</html>

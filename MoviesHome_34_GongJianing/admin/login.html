@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录</title>
+    <link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="beg-login-bg">
+    <form id="form1" action="api/login.ashx" method="get">
+        <div class="beg-login-box">
+            <header>
+				<h1>后台登录</h1>
+			</header>
+            <div class="beg-login-main">
+                <form action="/manage/login" class="layui-form" method="post">
+                    <input name="__RequestVerificationToken" type="hidden" value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81" />
+                    <div class="layui-form-item">
+                        <label class="beg-login-icon">
+                            <i class="layui-icon">&#xe612;</i>
+                        </label>
+                        <input type="text" name="userName" lay-verify="userName" autocomplete="off" placeholder="这里输入登录名"
+                            class="layui-input" id="username">
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="beg-login-icon">
+                            <i class="layui-icon">&#xe642;</i>
+                        </label>
+                        <input type="password" name="password" lay-verify="password" autocomplete="off" placeholder="这里输入密码"
+                            class="layui-input" id="password">
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="beg-pull-left beg-login-remember">
+                            <label>
+                                记住帐号？</label>
+                            <input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked title="记住帐号">
+                        </div>
+                        <div class="beg-pull-right">
+                            <button class="layui-btn layui-btn-primary" lay-filter="login">
+                                <i class="layui-icon"">&#xe650;</i> 登录
+                            </button>
+                        </div>
+                        <div class="beg-clear">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <footer>
+				<p>Beginner © </p>
+			</footer>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					$ = layui.jquery,
+					form = layui.form();
+					
+				form.on('submit(login)',function(data){
+					
+					 var username=$('#username').val();
+	                 var password=$('#password').val();
+					
+					var _json = jQuery.param({ "username": username,"password": password });
+                    var request = $.ajax({ 
+                    url: "../admin/api/login.ashx",  
+                    type: "POST",  
+                    async: false,  
+                    data: _json, //不能直接写成 {id:"123",code:"tomcat"}  
+                    dataType: "json",  
+                    // contentType: "charset=utf-8",  
+                    cache: false,  
+                    
+                 //4 接受返回过来的数据，同样是json格式的，根据返回过来的数据给出相应的提示或操作
+                    success: function (data) {  
+                        var json=data;
+                        
+                        //返回过来的是1 表示插入成功了
+                         if(json.r=="0")
+                         {
+                            //提示插入成功
+                            
+                         }
+                         //否则则是插入失败了
+                         else
+                         {
+                             
+                             window.location.href="index.aspx";
+                             
+                         }
+                },  
+                error: function (XMLHttpRequest, textStatus, errorThrown) { alert(XMLHttpRequest.readyState); }  
+            }); 
+					
+					
+					
+//					location.href='index.aspx';
+					return false;
+				});
+			});
+			
+			
+			function login(){
+			    var txtName = document.getElementById("name");
+			    var txtPwd = document.getElementById("pwd");
+			        if(txtName.value==""){
+			            alert("帐号不能为空！");
+			            txtName.focus();
+			            return false;
+			        }
+			        if(txtPwd.value==""){
+			            alert("密码不能为空！");
+			            txtName.focus();
+			            return false;
+			        }
+			        document.getElementById("form1").submit();
+			}
+			
+			
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return 1;
+}
+    </script>
+
+</body>
+</html>
